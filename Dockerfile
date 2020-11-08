@@ -11,4 +11,5 @@ RUN git clone https://github.com/dagonis/QuantumDuck.git
 RUN qmk setup -y
 COPY scripts scripts
 COPY src/compile.sh .
+COPY src/ducky_convert.py .
 CMD ./compile.sh
