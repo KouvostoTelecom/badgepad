@@ -7,15 +7,28 @@ import quantum
 class DuckyConvert:
     DEFAULT_KEY = "ANY_KEY"
 
-    def __init__(self, scripts_dir, target):
+    def __init__(self, scripts_dir, target, lang):
         self.scripts_dir = scripts_dir
         self.target = target
+        self.lang = lang
 
     def convert(self):
         converted = self.convert_scripts()
+        self.write_includes()
         self.write_enum_keycodes(converted)
         self.write_keymap(converted)
         self.write_scripts(converted)
+
+    def write_includes(self):
+        with open(self.target, "w") as target_file:
+            langs={
+                "fi": "#include <sendstring_finnish.h>"
+            }
+            lang_header = langs.get(self.lang, None)
+
+            if lang_header:
+                target_file.write("{}\n\n".format(lang_header))
+
 
     def convert_scripts(self):
         scripts = {}
@@ -31,7 +44,7 @@ class DuckyConvert:
         return scripts
 
     def write_enum_keycodes(self, scripts_dict):
-        with open(self.target, "w") as target_file: 
+        with open(self.target, "a") as target_file:
             target_file.write("enum custom_keycodes {\n")
             target_file.write("\t{},\n".format(self.DEFAULT_KEY))
             for layerkey in sorted(scripts_dict.keys()):
@@ -40,7 +53,7 @@ class DuckyConvert:
             target_file.write("};\n")
 
     def write_keymap(self, scripts_dict):
-        with open(self.target, "a") as target_file: 
+        with open(self.target, "a") as target_file:
             target_file.write("\nconst uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {\n")
             for layer_index, layerkey in enumerate(sorted(scripts_dict.keys())):
                 keys = sorted(scripts_dict[layerkey].keys())[:8]
@@ -63,7 +76,7 @@ class DuckyConvert:
             target_file.write("};\n")
 
     def write_scripts(self, scripts_dict):
-        with open(self.target, "a") as target_file: 
+        with open(self.target, "a") as target_file:
             target_file.write("bool process_record_user(uint16_t keycode, keyrecord_t *record) {\n")
             target_file.write("\tswitch (keycode) {\n")
             self.write_key_case(target_file, self.DEFAULT_KEY, ["SEND_STRING(\"YOU PRESSED ANY KEY!\");"])
@@ -98,5 +111,6 @@ if __name__ == "__main__":
     argument_parser = argparse.ArgumentParser();
     argument_parser.add_argument("--scripts")
     argument_parser.add_argument("--target")
+    argument_parser.add_argument("--lang", default="en")
     args = argument_parser.parse_args()
-    DuckyConvert(args.scripts, args.target).convert()
+    DuckyConvert(args.scripts, args.target, args.lang).convert()
