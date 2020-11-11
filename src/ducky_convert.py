@@ -63,14 +63,14 @@ class DuckyConvert:
              {},             {},
        {},       {}, {},       {},
              {},             {}\n""".format(
-                                  self.keycode(layerkey, keys[0]) if 0 < num_of_scripts else self.DEFAULT_KEY,
-                                  self.keycode(layerkey, keys[1]) if 1 < num_of_scripts else self.DEFAULT_KEY,
-                                  self.keycode(layerkey, keys[2]) if 2 < num_of_scripts else self.DEFAULT_KEY,
-                                  self.keycode(layerkey, keys[3]) if 3 < num_of_scripts else self.DEFAULT_KEY,
-                                  self.keycode(layerkey, keys[4]) if 4 < num_of_scripts else self.DEFAULT_KEY,
-                                  self.keycode(layerkey, keys[5]) if 5 < num_of_scripts else self.DEFAULT_KEY,
-                                  self.keycode(layerkey, keys[6]) if 6 < num_of_scripts else self.DEFAULT_KEY,
-                                  self.keycode(layerkey, keys[7]) if 7 < num_of_scripts else self.DEFAULT_KEY
+                                 self.keycode_for_button(layerkey, 0, keys),
+                                 self.keycode_for_button(layerkey, 1, keys),
+                                 self.keycode_for_button(layerkey, 2, keys),
+                                 self.keycode_for_button(layerkey, 3, keys),
+                                 self.keycode_for_button(layerkey, 4, keys),
+                                 self.keycode_for_button(layerkey, 5, keys),
+                                 self.keycode_for_button(layerkey, 6, keys),
+                                 self.keycode_for_button(layerkey, 7, keys)
                               ))
                 target_file.write("\t),\n")
             target_file.write("};\n")
@@ -106,6 +106,9 @@ class DuckyConvert:
             return  "{}\"{}\"{}".format(split[0], "\\\"".join(split[1:-1]), split[-1])
         else:
             return string
+
+    def keycode_for_button(self, layerkey, index, keys)
+        return self.keycode(layerkey, keys[index]) if index < len(keys) else self.DEFAULT_KEY 
 
 if __name__ == "__main__":
     argument_parser = argparse.ArgumentParser();
