@@ -8,7 +8,7 @@ You need to install Docker! Get Docker from [here](https://docs.docker.com/get-d
 
 ### BadgePad way
 1. `git clone https://github.com/KouvostoTelecom/badgepad`
-2. Run the Docker setup with `bin/run` command. This generates the binary file, which contains the firmware
+2. Run the Docker setup with `make compile` command as mentioned in the [README.md](../README.md). This generates the binary file, which contains the firmware.
 3. Short the badge
    1. Make a jumper wire (you can use a small AWG wire or, for example, ESD tweezers)
    2. Connect the middle (5th from left) resistor to get to the bootloader mode to the right side component (3,3V linear voltage regulator). The jump wire should be connected **when powering on the device** (either pressing the `RESET` button, or reconnecting USB-cable while shorting). Otherwise it won't work.
