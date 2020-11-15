@@ -15,6 +15,7 @@ class DuckyConvert:
     def convert(self):
         converted = self.convert_scripts()
         self.write_includes()
+        self.write_constants(converted)
         self.write_enum_keycodes(converted)
         self.write_keymap(converted)
         self.write_scripts(converted)
@@ -28,6 +29,10 @@ class DuckyConvert:
 
             if lang_header:
                 target_file.write("{}\n\n".format(lang_header))
+
+    def write_constants(self, converted):
+        with open(self.target, "w") as target_file:
+            target_file.write("const unsigned char MAX_LAYERS = {};\n\n".format(len(converted)))
 
 
     def convert_scripts(self):
