@@ -6,16 +6,21 @@ then
   exit 1
 fi
 
+if command -v git &> /dev/null
+then
+  echo "#####################"
+  echo "# Update repository #"
+  echo "#####################"
+  echo ""
+
+  git pull origin main
+fi
+
 echo "##################################"
 echo "# Starting to build docker image #"
 echo "##################################"
 echo ""
 docker build -t badgepad-latest .
-echo ""
-echo "######################"
-echo "# Docker image built #"
-echo "#####################"
-echo ""
 
 echo "################################"
 echo "# Starting to compile firmware #"
