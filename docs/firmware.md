@@ -4,6 +4,8 @@ The badge supports [QMK firmware](https://github.com/qmk/qmk_firmware/), which m
 
 ## How to flash QMK to Disobey 2018 badge
 
+You need to install Docker! Get Docker from [here](https://docs.docker.com/get-docker/)!
+
 ### BadgePad way
 1. `git clone https://github.com/KouvostoTelecom/badgepad`
 2. Run the Docker setup with `bin/run` command. This generates the binary file, which contains the firmware
