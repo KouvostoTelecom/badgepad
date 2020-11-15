@@ -107,7 +107,7 @@ class DuckyConvert:
         else:
             return string
 
-    def keycode_for_button(self, layerkey, index, keys)
+    def keycode_for_button(self, layerkey, index, keys):
         return self.keycode(layerkey, keys[index]) if index < len(keys) else self.DEFAULT_KEY 
 
 if __name__ == "__main__":
