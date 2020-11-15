@@ -1,4 +1,4 @@
-DOCKER_IMAGES = $(shell docker images | grep badgepad | tr -s ' ' | cut -d ' ' -f 3)
+DOCKER_IMAGES = $(shell docker images | grep badgepad | tr -s ' ' | cut -d ' ' -f 3 | uniq)
 PWD = $(shell pwd)
 TIMESTAMP = $(shell date +%s)
  
