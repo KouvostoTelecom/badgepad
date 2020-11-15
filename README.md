@@ -12,7 +12,7 @@ You don't have to use the KouvostoTelecom provided Docker to achieve greatness. 
 1. Build and compile firmware
 
 ```
-bin/run
+make compile
 ```
 
 2. Boot badge to flash mode (TBD)
