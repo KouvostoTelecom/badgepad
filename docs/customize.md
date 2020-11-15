@@ -2,7 +2,20 @@
 
 This document describes how you can add your own scripts to the Disobey badge 2018. This makes all kinds of bad USB attacks possible on the badge, but also makes it possible to use the Disobey badge as a macropad for all your needs. For example, you can customize the keymap so that it holds `F13`-`F24` keys, which are supported in Windows, Linux and MacOS, but are rarely used by any of the programs.
 
-If you decide to not modify badge hardware to include a rotary encoder and a screen; use 
+## Layers?
+One button can hold multiple different functions, if you use layers. Layers are similar to how laptops, with limited keyboards, use `FN`-button. This is refered to layers. You can switch layers by multiple different ways. The full list of how you can change the layer is documented in [QMK docs](https://docs.qmk.fm/#/feature_layers). 
+
+You can also modify your badge to have a rotary encoder to swap layers. Very convenient!
+
+## Scripts
+The macropad supports DuckyScript language. Our Docker container converts the DuckyScript to QMK supported version by using a open-source-tool called [QuantumDuck](https://github.com/dagonis/QuantumDuck).
+
+Here is how we have automated the process of adding ~~payloads~~ scripts;
+
+By default, the BadgePAD repository has a `script` folder, from which the `make` command takes the scripts, turns them to QMK-version, adds to keymap and compiles a firmware. By default there are two folders, `layer_0001` and `layer_0002`. If you need more layers, you can add more folders, named similarly. The upper limit is unknown, but depends on your script sizes and badges available memory. The scripts should be txt-files. The
+
+# Customizing it by hand
+If you wish **to not use** our built Docker container to compile everything, start here.
 
 ## How keymaps are compiled?
 The firmware and everything is compiled by [QMK firmware](https://github.com/qmk/qmk_firmware). KouvostoTelecom gracefully forked and added support for [Disobey badge 2018](https://github.com/KouvostoTelecom/qmk_firmware/tree/keyboard/rubberheikki/keyboards/disobey2018).
@@ -11,12 +24,7 @@ The keymaps are stored within `qmk_firmware/keyboards/disobey2018/keymaps/` fold
 
 **If you did not add OLED screen and a rotary encoder**, use `lite` folder instead of the `default` folder! Otherwise you might have latency problems.
 
-## Layers?
-One button can hold multiple different functions, if you use layers. Layers are similar to how laptops, with limited keyboards, use `FN`-button. This is refered to layers. You can switch layers by multiple different ways. The full list of how you can change the layer is documented in [QMK docs](https://docs.qmk.fm/#/feature_layers). 
-
-You can also modify your badge to have a rotary encoder to swap layers. Very convenient!
-
-# `Keymap.c` file
+## `Keymap.c` file
 `keymap.c` holds all the keycodes that you use. 
 
 ```c
