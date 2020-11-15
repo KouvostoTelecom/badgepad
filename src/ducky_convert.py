@@ -19,6 +19,7 @@ class DuckyConvert:
         self.write_enum_keycodes(converted)
         self.write_keymap(converted)
         self.write_scripts(converted)
+        self.write_render_u(converted)
 
     def write_includes(self):
         with open(self.target, "w") as target_file:
@@ -101,6 +102,34 @@ class DuckyConvert:
             target_file.write("\t\t\t\t{}\n".format(escaped_command))
         target_file.write("\t\t\t}\n")
         target_file.write("\t\t\tbreak;\n")
+
+    def write_render_u(self, scripts_dict):
+        with open(self.target, "a") as target_file:
+            target_file.write("void render_layer_ui(uint8_t layer) {\n")
+            target_file.write("\tswitch(layer) {\n")
+            for layer_index, layerkey in enumerate(sorted(scripts_dict.keys())):
+                target_file.write("\t\tcase {}:\n".format(layer_index))
+                script_names = list(scripts_dict[layerkey])
+                self.write_oled_screen_line_key(target_file, 1, script_names)
+                self.write_oled_screen_line_key(target_file, 2, script_names)
+                self.write_oled_screen_line_key(target_file, 3, script_names)
+                self.write_oled_screen_line_key(target_file, 4, script_names)
+                self.write_oled_screen_line_key(target_file, 5, script_names)
+                self.write_oled_screen_line_key(target_file, 6, script_names)
+                self.write_oled_screen_line_key(target_file, 7, script_names)
+                self.write_oled_screen_line_key(target_file, 8, script_names)
+                target_file.write("\t\t\tbreak;")
+
+            target_file.write("\t}")
+            target_file.write("}")
+
+
+    def write_oled_screen_line_key(self, target_file, button_number, script_names):
+        if len(script_names) > (button_number - 1):
+            line = "{}: {}".format(button_number, script_names[button_number - 1])
+            target_file.write("\t\t\toled_write_P(\"{}\\n\", false);\n".format(line))
+        else:
+            target_file.write("\t\t\toled_write_P(\"\\n\", false);\n")
 
     def keycode(self , layerkey, scriptskey):
         return "_".join([layerkey, scriptskey])
