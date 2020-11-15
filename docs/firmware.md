@@ -28,6 +28,8 @@ You need to install Docker! Get Docker from [here](https://docs.docker.com/get-d
 6. ???
 7. Profit!
 
+**NOTE:** You only need to do this once! For future flashing, you can achieve the same results by pressing `UP` on badge while connecting the badge to get to bootloader mode
+
 ### dfu-util way
 1. Follow BadgePad way to part 3.4. and then continue from here:
 2. `dfu-util -a 0 -s 0x08000000:leave -D output/disobey2018_default.bin`
