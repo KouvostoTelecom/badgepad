@@ -9,18 +9,12 @@ You don't have to use the KouvostoTelecom provided Docker to achieve greatness. 
 
 # Setup & compile
 
-1. Build image
+1. Build and compile firmware
 
 ```
-docker build . -t badgepad-latest 
+bin/run
 ```
 
-2. Compile firmware
-
-```
-docker run -it --rm -v $(pwd)/output:/build badgepad-latest
-```
-
-3. Boot badge to flash mode (TBD)
-4. Open QMK Toolbox and select .bin file from `output`. Press Flash.
-5. Profit
+2. Boot badge to flash mode (TBD)
+3. Open QMK Toolbox and select .bin file from `output`. Press Flash.
+4. Profit
