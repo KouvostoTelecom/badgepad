@@ -30,8 +30,7 @@ Optional, nice to have
 | Case        | 3D printed from STLs                    |
 | Plate       | 3D printed from STLs                    |
 | Keycaps     | MX keycaps can be 3D printed, or bought |
-| Heatinserts | M3 heat-insert                          |
-| Screws      | 3x15mm self tapping screw               |
+| Screws      | 3x15mm self-tapping screw               |
 
 ### Switches
 Any switch type will be fine. We used Gateron, since they are better and cheaper than regular Cherry MX. Kailh is a good budget choice, Outemu is cheaper and worse option. Alps might not be compatible with the given plate.
