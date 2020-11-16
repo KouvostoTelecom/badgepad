@@ -19,7 +19,7 @@ class DuckyConvert:
         self.write_enum_keycodes(converted)
         self.write_keymap(converted)
         self.write_scripts(converted)
-        self.write_render_u(converted)
+        self.write_render_ui(converted)
 
     def write_includes(self):
         with open(self.target, "w") as target_file:
@@ -103,8 +103,9 @@ class DuckyConvert:
         target_file.write("\t\t\t}\n")
         target_file.write("\t\t\tbreak;\n")
 
-    def write_render_u(self, scripts_dict):
+    def write_render_ui(self, scripts_dict):
         with open(self.target, "a") as target_file:
+            target_file.write("#ifdef OLED_DRIVER_ENABLE\n")
             target_file.write("void render_layer_ui(uint8_t layer) {\n")
             target_file.write("\tswitch(layer) {\n")
             for layer_index, layerkey in enumerate(sorted(scripts_dict.keys())):
@@ -120,8 +121,9 @@ class DuckyConvert:
                 self.write_oled_screen_line_key(target_file, 8, script_names)
                 target_file.write("\t\t\tbreak;")
 
-            target_file.write("\t}")
-            target_file.write("}")
+            target_file.write("\t}\n")
+            target_file.write("}\n")
+            target_file.write("#endif\n")
 
 
     def write_oled_screen_line_key(self, target_file, button_number, script_names):
