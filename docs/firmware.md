@@ -34,3 +34,6 @@ You need to install Docker! Get Docker from [here](https://docs.docker.com/get-d
 1. Follow BadgePad way to part 3.4. and then continue from here:
 2. `dfu-util -a 0 -s 0x08000000:leave -D output/disobey2018_default.bin`
 3. The badge should leave the DFU mode automatically (hence the `:leave` option) and you should be able to start using your badge.
+
+## Restoring the original firmware
+If for any reason you want to go back to original Disobey 2018 firmware, you can get the original firmware from [Disobey 2018 repository](https://github.com/disobeyfi/badge-2018/tree/master/badgefw-final). To flash the OG firmware, you can use the QMK toolbox or `dfu-util` to reflash it.
