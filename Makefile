@@ -9,7 +9,7 @@ clean:
 .PHONY: compile
 compile:
 	docker build -t badgepad:latest -t badgepad:$(TIMESTAMP) .
-	docker run -ti --rm -v $(PWD)/output:/build badgepad
+	docker run -ti --rm -v $(PWD)/output:/build -e KEYMAP=$(keymap) badgepad
 
 .PHONY: force-compile
 force-compile:
