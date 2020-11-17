@@ -9,7 +9,7 @@ You don't have to use the KouvostoTelecom provided Docker to achieve greatness. 
 
 # Setup & compile
 
-## QMK Toolbox
+## QMK Toolbox (win & mac)
 1. Build and compile firmware
 ```
 make compile
@@ -19,7 +19,7 @@ make compile
 4. Press `Flash` from QMK Toolbox
 5. Profit
 
-## dfu-util
+## dfu-util (linux & mac)
 1. Build and compile firmware
 
 ```
