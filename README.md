@@ -43,3 +43,11 @@ Add your DuckyScripts as txt-files to `scripts` folder according to the layers.
     7           8
 ```
 - `a.txt` would be binded to key #1
+
+## Parts
+
+### OLED display
+https://a.aliexpress.com/_mLHUDWN
+
+### Rotary Encoder
+https://a.aliexpress.com/_mM4yNON
